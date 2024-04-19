@@ -1,0 +1,9 @@
+env: "local"
+storage: "./storage/storage.db"
+http_server:
+  port: "localhost:8082"
+  idle_timeout: 60s
+  timeout: 4s
+  user: "Dmitrii"
+  password: "nigger"
+
