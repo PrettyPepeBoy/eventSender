@@ -25,7 +25,6 @@ func main() {
 	logger := setupLogger(config.Env)
 	router := chi.NewRouter()
 	dataBase, err := sqlite.MustSetupDB(logger, config)
-	logger.Info("starting server", config.Server.Port)
 	if err != nil {
 		logger.Error("failed to setup database")
 		os.Exit(1)
@@ -35,15 +34,9 @@ func main() {
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.URLFormat)
 
-	router.Route("/admin/createTable", func(r chi.Router) {
-		r.Use(middleware.BasicAuth("tst-user", map[string]string{
-			config.Server.User: config.Server.Password,
-		}))
-		r.Post("/users", users.CreateTable(logger, dataBase))
-	})
-
 	router.Route("/users", func(r chi.Router) {
 		r.Post("/", users.CreateUser(logger, dataBase))
+		r.Post("/cache", users.BuyProduct(logger, dataBase))
 	})
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
