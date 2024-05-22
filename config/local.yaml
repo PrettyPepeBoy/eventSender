@@ -1,9 +1,19 @@
 env: "local"
 storage: "./storage/storage.db"
-http_server:
+broker_server:
   port: "localhost:8082"
   idle_timeout: 60s
   timeout: 4s
   user: "Dmitrii"
   password: "Shilenko"
-
+postgresql:
+  host: "localhost"
+  port: 5432
+  database: "postgres"
+  username: "postgres"
+  password: "Dima0987654321"
+mail_sender:
+  mail: "PepeSuperBoy@yandex.ru"
+  password: "Dima08642"
+  host: "smtp.yandex.ru"
+  port: "25"

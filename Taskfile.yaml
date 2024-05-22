@@ -1,0 +1,7 @@
+version: "3"
+
+tasks:
+  generate:
+    desc: "migrate database"
+    cmds:
+      - go run ./cmd/migrate --storage-path=./storage/storage.db --migrations-path=./migrations --migrations-mission=up
